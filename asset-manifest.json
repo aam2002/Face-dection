@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/face-dection/static/css/main.3d9223f0.css",
+    "main.js": "/face-dection/static/js/main.4181a583.js",
+    "static/js/787.054767be.chunk.js": "/face-dection/static/js/787.054767be.chunk.js",
+    "static/media/brain.png": "/face-dection/static/media/brain.b639461088a03ec669e3.png",
+    "index.html": "/face-dection/index.html",
+    "main.3d9223f0.css.map": "/face-dection/static/css/main.3d9223f0.css.map",
+    "main.4181a583.js.map": "/face-dection/static/js/main.4181a583.js.map",
+    "787.054767be.chunk.js.map": "/face-dection/static/js/787.054767be.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3d9223f0.css",
+    "static/js/main.4181a583.js"
+  ]
+}
