@@ -11,6 +11,7 @@ import Register from "./Component/Register/Register";
 const App = () => {
   const [route, setRoute] = useState("signin");
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [user , setUser] = useState({})
   const onRouteChange = (rout) => {
     if (rout === "signout") {
       setIsSignedIn(false);
@@ -19,6 +20,16 @@ const App = () => {
     }
     setRoute(rout);
   };
+ const loadUser = (data) =>{
+    
+    setUser({
+      id : data.id, 
+      name:data.name,
+      email:data.email,
+      entries:data.entries,
+      joined:data.joined
+    })
+  }
 
   return (
     <div className="App">
@@ -27,13 +38,13 @@ const App = () => {
       {route === "home" ? (
         <>
           <Logo />
-          <Rank />
-          <ImageLinkFrom />
+          <Rank name ={user.name} entries={user.entries} />
+          <ImageLinkFrom user={user} setUser = {setUser} />
         </>
       ) : route === "signin" ? (
-        <SignIn onRouteChange={onRouteChange} />
+        <SignIn loadUser={loadUser} onRouteChange={onRouteChange} />
       ) : (
-        <Register onRouteChange={onRouteChange} />
+        <Register loadUser={loadUser} onRouteChange={onRouteChange} />
       )}
     </div>
   );

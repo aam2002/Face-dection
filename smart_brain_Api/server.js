@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 const database  = {
     users:[
         {
-            id:'123',
+            id:'121',
             name : 'Aman',
             email:'amansoni@gmail.com',
             password:'hoja',
@@ -17,7 +17,7 @@ const database  = {
         },
     
         {
-            id:'124',
+            id:'122',
             name : 'Banana',
             email:'banana@gmail.com',
             password:'booking',
@@ -31,7 +31,7 @@ app.get('/',(req ,res)=>{
 })
 app.post('/signin',(req,res)=>{
    if(req.body.email=== database.users[0].email && req.body.password === database.users[0].password){
-    res.json('success')
+    res.json(database.users[0])
    }
    else{
     res.status(404).json('fail')
@@ -43,7 +43,7 @@ app.post('/register',(req ,res)=>{
         console.log(hash)
     })
     database.users.push({
-        id:'125',
+        id:'12'+(database.users.length+1),
         name : name,
         email: email,
         password: password,
@@ -64,7 +64,7 @@ app.get('/profile/:id',(req , res)=>{
         res.status(400).json('not found')
     }
 })
-app.post('/image', (req, res)=>{
+app.put('/image', (req, res)=>{
     const {id}=req.body
     let found = false
     database.users.forEach(user => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-const SignIn = ({ onRouteChange }) => {
+const SignIn = ({ onRouteChange , loadUser }) => {
 
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
@@ -9,8 +9,9 @@ const SignIn = ({ onRouteChange }) => {
   const onPasswordChange = (event) => {
     setSignInPassword(event.target.value);
   };
-  const onSubmitSignIn = () => {
-   fetch("http://localhost:3000/signin", {
+  const onSubmitSignIn = (e) => {
+    e.preventDefault()
+    fetch("http://localhost:3000/signin", {
       method: "post",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
@@ -18,12 +19,12 @@ const SignIn = ({ onRouteChange }) => {
         password: signInPassword,
       }),
     }).then(response => response.json())
-    .then((data)=> {
-      if(data =='success'){
-        console.log(data)
+    .then((user)=> {
+      if(user.id){
+        loadUser(user)
+        onRouteChange('home')
       }
     })
-    onRouteChange('home')
   };
   return (
     <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 center shadow-5">

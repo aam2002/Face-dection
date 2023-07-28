@@ -3,7 +3,7 @@ import "./ImageLinkForm.css";
 import "./FaceRecognition.css";
 import "./FaceRecognition";
 import FaceRecognition from "./FaceRecognition";
-const ImageLinkForm = () => {
+const ImageLinkForm = ({ user, setUser }) => {
   const MODEL_ID = "face-detection";
   const [query, setQuery] = useState("");
   const [box, setBox] = useState({});
@@ -61,7 +61,20 @@ const ImageLinkForm = () => {
       returnAiJSONreqOptions(query)
     )
       .then((response) => response.json())
-      .then((result) => displayFaceBox(calculateFaceLocation(result)))
+      .then((result) => {
+        if (result) {
+          fetch("http://localhost:3000/image", {
+            method: "put",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({
+              id: user.id,
+            }),
+          })
+            .then((response) => response.json)
+            .then(count => setUser({entries:count} ));
+        }
+        displayFaceBox(calculateFaceLocation(result));
+      })
       .catch((error) => console.log("error", error));
   };
 
@@ -71,24 +84,24 @@ const ImageLinkForm = () => {
         <p className="f3">
           {`This Magic Brain will detect face in your pictures . Give it a try`}{" "}
         </p>
-      <div className="center">
-        <div className="pa4 br3 shadow-5 center form">
-          <input
-            className="f4 pa2 w-70 center"
-            type="text"
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button
-            className="w-30 grow f4 link ph3 dib white bg-light-purple pv2 "
-            onClick={onButtonClick}
-          >
-            Detect
-          </button>
+        <div className="center">
+          <div className="pa4 br3 shadow-5 center form">
+            <input
+              className="f4 pa2 w-70 center"
+              type="text"
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button
+              className="w-30 grow f4 link ph3 dib white bg-light-purple pv2 "
+              onClick={onButtonClick}
+            >
+              Detect
+            </button>
+          </div>
         </div>
       </div>
-    </div>
       <FaceRecognition query={query} box={box} />
-      </>
+    </>
   );
 };
 
