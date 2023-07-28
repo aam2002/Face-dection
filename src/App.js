@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import Navigation from "./Component/Navigation";
 import "./App.css";
 import Logo from "./Component/Logo/Logo";
@@ -10,35 +10,33 @@ import Register from "./Component/Register/Register";
 
 const App = () => {
   const [route, setRoute] = useState("signin");
-  const[isSignedIn , setIsSignedIn] = useState(false)
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const onRouteChange = (rout) => {
-    if(rout === 'signout'){
-      setIsSignedIn(false)
-    }
-    else if(rout==='home'){
-      setIsSignedIn(true)
+    if (rout === "signout") {
+      setIsSignedIn(false);
+    } else if (rout === "home") {
+      setIsSignedIn(true);
     }
     setRoute(rout);
   };
-return (
-  <div className="App">
-  <Bg style={{ zIndex: "-3" }} />
-  <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
- { route === 'home' ?
-    <>
-      <Logo />
-      <Rank />
-      <ImageLinkFrom />
-    </> : (
-      route === 'signin'?
-      <SignIn onRouteChange = {onRouteChange}/> :
-      <Register onRouteChange={onRouteChange}/>
-    )
-}
-</div>
-)
 
-}
-
+  return (
+    <div className="App">
+      <Bg style={{ zIndex: "-3" }} />
+      <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
+      {route === "home" ? (
+        <>
+          <Logo />
+          <Rank />
+          <ImageLinkFrom />
+        </>
+      ) : route === "signin" ? (
+        <SignIn onRouteChange={onRouteChange} />
+      ) : (
+        <Register onRouteChange={onRouteChange} />
+      )}
+    </div>
+  );
+};
 
 export default App;
