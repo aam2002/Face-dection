@@ -1,31 +1,35 @@
-import React, { useState } from "react";
-const SignIn = ({ onRouteChange , loadUser }) => {
+import React from "react";
+const SignIn = ({ onRouteChange, loadUser }) => {
+  const [user, setUser] = React.useState({ email: "", password: "" });
 
-  const [signInEmail, setSignInEmail] = useState("");
-  const [signInPassword, setSignInPassword] = useState("");
-  const onEmailChange = (event) => {
-    setSignInEmail(event.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser((prev) => ({ ...prev, [name]: value }));
   };
-  const onPasswordChange = (event) => {
-    setSignInPassword(event.target.value);
-  };
+
   const onSubmitSignIn = (e) => {
-    e.preventDefault()
+    const { email, password } = user;
+
+    e.preventDefault();
     fetch("http://localhost:3000/signin", {
       method: "post",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
-        email: signInEmail,
-        password: signInPassword,
+        email,
+        password,
       }),
-    }).then(response => response.json())
-    .then((user)=> {
-      if(user.id){
-        loadUser(user)
-        onRouteChange('home')
-      }
     })
+      .then((response) => response.json())
+      .then((user) => {
+        if (user.id) {
+          loadUser(user);
+          localStorage.setItem("isLoggedin", true);
+          localStorage.setItem("email", email);
+          localStorage.setItem("password", password);
+        }
+      });
   };
+
   return (
     <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 center shadow-5">
       <main className="pa4 black-80">
@@ -39,9 +43,9 @@ const SignIn = ({ onRouteChange , loadUser }) => {
               <input
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                 type="email"
-                name="email-address"
-                id="email-address"
-                onChange={onEmailChange}
+                name="email"
+                id="email"
+                onChange={handleChange}
               />
             </div>
             <div className="mv3">
@@ -53,7 +57,7 @@ const SignIn = ({ onRouteChange , loadUser }) => {
                 type="password"
                 name="password"
                 id="password"
-                onChange={onPasswordChange}
+                onChange={handleChange}
               />
             </div>
           </fieldset>
