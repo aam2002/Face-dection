@@ -63,15 +63,15 @@ const ImageLinkForm = ({ user, setUser }) => {
       .then((response) => response.json())
       .then((result) => {
         if (result) {
-          fetch("http://localhost:3000/image", {
+          fetch("https://face-backend-vuta.onrender.com", {
             method: "put",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({
               id: user.id,
             }),
           })
-            .then((response) => response.json)
-            .then(count => setUser({entries:count} ));
+          .then((response) => response.json())
+          .then(count => setUser((prev)=>({...prev , entries:count})));
         }
         displayFaceBox(calculateFaceLocation(result));
       })

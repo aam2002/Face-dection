@@ -14,7 +14,7 @@ const Register = ({ onRouteChange , loadUser }) => {
   };
   const onSubmitRegister = (e) => {
     e.preventDefault()
-    fetch("http://localhost:3000/register", {
+    fetch("https://face-backend-vuta.onrender.com/register", {
       method: "post",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
@@ -24,7 +24,7 @@ const Register = ({ onRouteChange , loadUser }) => {
       }),
     }).then(response => response.json())
     .then((user)=> {
-      if(user){
+      if(user.id){
         loadUser(user)
         onRouteChange('home')
       }
