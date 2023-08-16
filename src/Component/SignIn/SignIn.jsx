@@ -11,7 +11,7 @@ const SignIn = ({ onRouteChange , loadUser }) => {
   };
   const onSubmitSignIn = (e) => {
     e.preventDefault()
-    fetch("https://face-backend-66pc.onrender.com", {
+    fetch("https://face-backend-66pc.onrender.com/signin", {
       method: "post",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({

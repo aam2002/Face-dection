@@ -63,7 +63,7 @@ const ImageLinkForm = ({ user, setUser }) => {
       .then((response) => response.json())
       .then((result) => {
         if (result) {
-          fetch("https://face-backend-66pc.onrender.com", {
+          fetch("https://face-backend-66pc.onrender.com/image", {
             method: "put",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({
