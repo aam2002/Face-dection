@@ -8,16 +8,19 @@ const register = require("./controllers/register");
 const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
 const image = require("./controllers/image");
+
 const postgres = knex({
   client: "pg",
   connection: {
-    connectionString:process.env.DATABASE_URL,
-    ssl:{rejectUnauthorized:false},
-    host: process.env.DATABASE_HOST,
-    port: 5432,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASS,
-    database: process.env.DATABASE_DB,
+    connectionString:`postgres://face:JT7HbpVoUNiLrNNCRUE2EIOA5RUAc7hw@dpg-cjeau13bq8nc73fejco0-a/face_akl2`,
+    ssl: {
+        rejectUnauthorized: false
+    },
+    host:`
+    dpg-cjeau13bq8nc73fejco0-a`,
+    user:`face`,
+    password:`JT7HbpVoUNiLrNNCRUE2EIOA5RUAc7hw`,
+    database:`face_akl2`
   },
 });
 

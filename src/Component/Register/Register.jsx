@@ -14,7 +14,7 @@ const Register = ({ onRouteChange , loadUser }) => {
   };
   const onSubmitRegister = (e) => {
     e.preventDefault()
-    fetch("https://face-backend-vuta.onrender.com/register", {
+    fetch("https://face-backend-66pc.onrender.com/register", {
       method: "post",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
