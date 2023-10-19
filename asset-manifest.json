@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Face-dection/static/css/main.3d9223f0.css",
-    "main.js": "/Face-dection/static/js/main.ad0af6c0.js",
+    "main.js": "/Face-dection/static/js/main.11e7ff96.js",
     "static/js/787.054767be.chunk.js": "/Face-dection/static/js/787.054767be.chunk.js",
     "static/media/brain.png": "/Face-dection/static/media/brain.b639461088a03ec669e3.png",
     "index.html": "/Face-dection/index.html",
     "main.3d9223f0.css.map": "/Face-dection/static/css/main.3d9223f0.css.map",
-    "main.ad0af6c0.js.map": "/Face-dection/static/js/main.ad0af6c0.js.map",
+    "main.11e7ff96.js.map": "/Face-dection/static/js/main.11e7ff96.js.map",
     "787.054767be.chunk.js.map": "/Face-dection/static/js/787.054767be.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3d9223f0.css",
-    "static/js/main.ad0af6c0.js"
+    "static/js/main.11e7ff96.js"
   ]
 }
