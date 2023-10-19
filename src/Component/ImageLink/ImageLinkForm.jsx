@@ -71,7 +71,7 @@ const ImageLinkForm = ({ user, setUser }) => {
             }),
           })
           .then((response) => response.json())
-          .then(count => setUser((prev)=>({...prev , entries:count})));
+          .then(count => setUser((prev)=>({...prev , entries:count ,})));
         }
         displayFaceBox(calculateFaceLocation(result));
       })
